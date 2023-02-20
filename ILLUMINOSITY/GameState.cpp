@@ -191,6 +191,8 @@ void GameState::update(const float& dt)
 		this->updateHealthbar();
 
 		this->player->update(dt);
+
+		this->tilemap->update(this->player);
 	}
 	else //paused
 	{

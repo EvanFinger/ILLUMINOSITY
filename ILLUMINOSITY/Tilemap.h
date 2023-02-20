@@ -2,6 +2,7 @@
 #define TILE_MAP
 
 #include "Tile.h"
+#include "Entity.h"
 
 class Tilemap
 {
@@ -16,7 +17,7 @@ public:
 	Tilemap();
 	virtual ~Tilemap();
 
-	void update();
+	void update(Entity* entity);
 	void render(sf::RenderTarget& target);
 };
 

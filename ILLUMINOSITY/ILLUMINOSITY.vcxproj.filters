@@ -28,6 +28,9 @@
     <Filter Include="Tilemap">
       <UniqueIdentifier>{37eade6b-c8ed-40d6-8e93-1053257255ca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components\DurablityComponents">
+      <UniqueIdentifier>{b431625f-44f5-427b-b808-0815691644c9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -48,19 +51,10 @@
     <ClCompile Include="DamageComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="DurabilityComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="HealthComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="HitboxComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="MovementComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="ShieldComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="Entity.cpp">
@@ -111,6 +105,15 @@
     <ClCompile Include="Tilemap.cpp">
       <Filter>Tilemap</Filter>
     </ClCompile>
+    <ClCompile Include="DurabilityComponent.cpp">
+      <Filter>Components\DurablityComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthComponent.cpp">
+      <Filter>Components\DurablityComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="ShieldComponent.cpp">
+      <Filter>Components\DurablityComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -128,19 +131,10 @@
     <ClInclude Include="DamageComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="DurabilityComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="HealthComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
     <ClInclude Include="HitboxComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="MovementComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="ShieldComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="Entity.h">
@@ -190,6 +184,15 @@
     </ClInclude>
     <ClInclude Include="Tile.h">
       <Filter>Tilemap</Filter>
+    </ClInclude>
+    <ClInclude Include="DurabilityComponent.h">
+      <Filter>Components\DurablityComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthComponent.h">
+      <Filter>Components\DurablityComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="ShieldComponent.h">
+      <Filter>Components\DurablityComponents</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

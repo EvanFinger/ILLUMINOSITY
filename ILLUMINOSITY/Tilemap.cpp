@@ -40,9 +40,24 @@ Tilemap::~Tilemap()
 	}
 }
 
-void Tilemap::update()
+void Tilemap::update(Entity* entity)
 {
-
+	if (entity->getEntityPosition().x < 0.f)
+	{
+		entity->setPosition(0.f, entity->getEntityPosition().y);
+	}
+	else if (entity->getEntityPosition().x + entity->getGlobalBounds().width > static_cast<float>(mapSize.x) * this->gridSizeF)
+	{
+		entity->setPosition(static_cast<float>(mapSize.x) * this->gridSizeF - entity->getGlobalBounds().width, entity->getEntityPosition().y);
+	}
+	if (entity->getEntityPosition().y < 0.f)
+	{
+		entity->setPosition(entity->getEntityPosition().x, 0.f);
+	}
+	else if (entity->getEntityPosition().y + entity->getGlobalBounds().height > static_cast<float>(mapSize.y) * this->gridSizeF)
+	{
+		entity->setPosition(entity->getEntityPosition().x, static_cast<float>(mapSize.y) * this->gridSizeF - entity->getGlobalBounds().height);
+	}
 }
 
 void Tilemap::render(sf::RenderTarget& target)

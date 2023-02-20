@@ -25,9 +25,9 @@ private:
 			: sprite(sprite), textureSheet(texture_Sheet), animationTimer(animation_timer), width(width), height(height)
 		{
 			this->timer = 0.f;
-			this->startRect = sf::IntRect(start_frame_x, start_frame_y, width, height);
+			this->startRect = sf::IntRect(start_frame_x * width, start_frame_y * height, width, height);
 			this->currRect = this->startRect;
-			this->endRect = sf::IntRect(frames_x * width, frames_y * height, width, height);
+			this->endRect = sf::IntRect(frames_x * width, start_frame_y * height + frames_y * height, width, height);
 
 			this->sprite.setTexture(this->textureSheet, true);
 			this->sprite.setTextureRect(this->startRect);
