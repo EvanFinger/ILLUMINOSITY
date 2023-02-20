@@ -15,14 +15,14 @@ private:
 
 	std::map<std::string, gui::Button*> buttons;
 public:
-	PauseMenu(sf::RenderWindow& window, sf::Font& font);
+	PauseMenu(sf::VideoMode& vm, sf::Font& font);
 	virtual ~PauseMenu();
 
 	std::map<std::string, gui::Button*>& getButtons();
 
 	const bool& isButtonPressed(const std::string key);
 	void addButton();
-	void update(const sf::Vector2f& mousePos);
+	void update(const sf::Vector2f& mousePosWindow);
 	void render(sf::RenderTarget& target);
 };
 

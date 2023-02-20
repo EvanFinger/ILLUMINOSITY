@@ -203,8 +203,10 @@ void gui::Button::update(const sf::Vector2f& mousePos)
 		this->text.setFillColor(this->textActiveColor);
 		this->shape.setOutlineColor(this->outlineActiveColor);
 		break;
-	default:
-		this->shape.setFillColor(sf::Color::Red);
+	case BTN_CLICKED:
+		this->shape.setFillColor(this->activeColor);
+		this->text.setFillColor(this->textActiveColor);
+		this->shape.setOutlineColor(this->outlineActiveColor);
 		break;
 	}
 

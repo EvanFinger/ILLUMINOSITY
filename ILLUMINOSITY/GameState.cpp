@@ -80,7 +80,7 @@ void GameState::initTextures()
 
 void GameState::initPauseMenu()
 {
-	this->pauseMenu = new PauseMenu(*this->window, this->font);
+	this->pauseMenu = new PauseMenu(this->stateData->gfxSettings->resolution, this->font);
 	this->pauseMenu->addButton();
 }
 
@@ -91,12 +91,12 @@ void GameState::initHealthbar()
 
 void GameState::initTilemap()
 {
-	tilemap = new Tilemap();
+	tilemap = new Tilemap(this->stateData->gridSize);
 }
 
 void GameState::initPlayer()
 {
-	this->player = new Player(0, 0, 20, this->textures["PLAYER_SHEET"]);
+	this->player = new Player(this->tilemap->getmapSize().x * gridSize / 2, this->tilemap->getmapSize().y * gridSize / 2, 20, this->textures["PLAYER_SHEET"]);
 	this->player->setScale(2, 2);
 }
 
@@ -210,7 +210,7 @@ void GameState::render(sf::RenderTarget* target)
 	this->renderTexture.clear();
 
 	this->renderTexture.setView(this->view);
-	this->tilemap->render(this->renderTexture);
+	this->tilemap->render(this->renderTexture, this->player, this->stateData);
 	this->player->render(this->renderTexture);
 
 

@@ -39,6 +39,7 @@ public:
 	virtual const HitboxComponent& getHitbox() const;
 	virtual const sf::Vector2f& getEntityPosition() const;
 	virtual const sf::FloatRect getGlobalBounds() const;
+	virtual const sf::Vector2u getGridPosition(const unsigned gridSizeU) const;
 
 	//Mods
 	virtual void setPosition(const float& x, const float& y);

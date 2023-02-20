@@ -3,6 +3,7 @@
 
 #include "Tile.h"
 #include "Entity.h"
+#include "State.h"
 
 class Tilemap
 {
@@ -13,12 +14,17 @@ private:
 	unsigned short layers;
 	std::vector< std::vector < std::vector < Tile* > > > map;
 	sf::Texture tileTexture;
+
+	//CULL
+	unsigned startX, endX, startY, endY, layer;
 public:
-	Tilemap();
+	Tilemap(const unsigned gridSizeU);
 	virtual ~Tilemap();
 
+	const sf::Vector2u& getmapSize() const;
+
 	void update(Entity* entity);
-	void render(sf::RenderTarget& target);
+	void render(sf::RenderTarget& target, Entity* entity, StateData* state_data);
 };
 
 #endif

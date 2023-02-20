@@ -1,14 +1,14 @@
 #include "stdafx.h"
 #include "PauseMenu.h"
 
-PauseMenu::PauseMenu(sf::RenderWindow& window, sf::Font& font)
+PauseMenu::PauseMenu(sf::VideoMode& vm, sf::Font& font)
 	:font(font)
 {
 	//init bg
 	this->background.setSize(
 		sf::Vector2f(
-			static_cast<float>(window.getSize().x),
-			static_cast<float>(window.getSize().y)
+			static_cast<float>(vm.width),
+			static_cast<float>(vm.height)
 		)
 	);
 	this->background.setFillColor(sf::Color(20, 20, 20, 100));
@@ -16,20 +16,20 @@ PauseMenu::PauseMenu(sf::RenderWindow& window, sf::Font& font)
 	//init container
 	this->container.setSize(
 		sf::Vector2f(
-			static_cast<float>(window.getSize().x / 3.f),
-			static_cast<float>(window.getSize().y / 2.f)
+			static_cast<float>(vm.width / 3.f),
+			static_cast<float>(vm.height / 2.f)
 		)
 	);
 	this->container.setFillColor(sf::Color(20, 20, 20, 200));
 	this->container.setPosition(
-		static_cast<float>(window.getSize().x / 2.f - this->container.getSize().x / 2.f),
-		static_cast<float>(window.getSize().y / 2.f - this->container.getSize().y / 2.f)
+		static_cast<float>(vm.width / 2.f - this->container.getSize().x / 2.f),
+		static_cast<float>(vm.height / 2.f - this->container.getSize().y / 2.f)
 	);
 
 	//init text
 	this->menuText.setFont(font);
 	this->menuText.setFillColor(sf::Color(255, 255, 255, 200));
-	this->menuText.setCharacterSize(window.getSize().x / 26.6f);
+	this->menuText.setCharacterSize(vm.width / 26.6f);
 	this->menuText.setString("PAUSED");
 	this->menuText.setPosition(
 		this->container.getPosition().x + this->container.getSize().x / 2.f - this->menuText.getGlobalBounds().width / 2,
@@ -87,11 +87,11 @@ void PauseMenu::addButton()
 	);
 }
 
-void PauseMenu::update(const sf::Vector2f& mousePos)
+void PauseMenu::update(const sf::Vector2f& mousePosWindow)
 {
 	for (auto& iterator : this->buttons)
 	{
-		iterator.second->update(mousePos);
+		iterator.second->update(mousePosWindow);
 	}
 }
 
