@@ -132,6 +132,9 @@ SettingsState::SettingsState(StateData* state_data)
 	this->initTitle();
 	this->initGui();
 	this->initText();
+
+	this->background.setSize(sf::Vector2f(window->getSize()));
+	this->background.setTexture(&this->stateData->stateTextures["MAIN_MENU_BG"]);
 }
 
 SettingsState::~SettingsState()

@@ -46,14 +46,14 @@ void CharacterSelectState::initTitle()
 
 void CharacterSelectState::initPlayerDescription()
 {
-	if (!this->playerImage.loadFromFile("Images/Players/player_idle_0.png"))
+	if (!this->playerImage.loadFromFile("Images/Players/player.png"))
 		throw("Swordmaster Image could not be found!");
 
 	this->playerTexture.loadFromImage(playerImage);
 	this->playerSprite.setTexture(playerTexture);
-	this->playerSprite.setScale(15, 15);
+	this->playerSprite.setScale(-15, 15);
 	this->playerSprite.setPosition(
-		this->title.getPosition().x + this->title.getGlobalBounds().width + this->title.getGlobalBounds().height,
+		this->title.getPosition().x + this->title.getGlobalBounds().width + this->playerSprite.getGlobalBounds().width,
 		this->title.getPosition().y);
 
 	this->playerSummary.setFont(this->font);
@@ -120,7 +120,7 @@ CharacterSelectState::CharacterSelectState(StateData* state_data)
 
 
 	this->background.setSize(sf::Vector2f(window->getSize()));
-	this->background.setFillColor(sf::Color(31, 34, 50, 255));
+	this->background.setTexture(&this->stateData->stateTextures["MAIN_MENU_BG"]);
 }//31, 34, 50, 255
 
 CharacterSelectState::~CharacterSelectState()

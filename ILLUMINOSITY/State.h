@@ -19,6 +19,7 @@ public:
 	GraphicsSettings* gfxSettings;
 	std::map < std::string, sf::Keyboard::Key>* supportedKeys;
 	std::stack<State*>* states;
+	std::map< std::string, sf::Texture> stateTextures;
 };
 
 class State

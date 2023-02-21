@@ -75,7 +75,7 @@ SwordUpgradeState::SwordUpgradeState(StateData* state_data)
 
 
 	this->background.setSize(sf::Vector2f(window->getSize()));
-	this->background.setFillColor(sf::Color(31, 34, 50, 255));
+	this->background.setTexture(&this->stateData->stateTextures["MAIN_MENU_BG"]);
 }
 
 SwordUpgradeState::~SwordUpgradeState()

@@ -29,19 +29,21 @@ void MainMenuState::initKeybinds()
 
 void MainMenuState::initTextures()
 {
-
+	if (!this->stateData->stateTextures["MAIN_MENU_BG"].loadFromFile("Images/Backgrounds/main_menu_bg.png"))
+		std::cout << "ERROR - COULD NOT LOAD MAIN MENU BACKGROUND";
 }
 
 void MainMenuState::initTitle()
 {
 	this->title.setFont(this->font);
 	this->title.setCharacterSize(static_cast<unsigned>(this->window->getSize().x / 20.f));
-	this->title.setString("THE WATCHERS");
+	this->title.setString("ILLUMINOSITY");
 
 	this->title.setPosition(
 		this->window->getSize().x / 2.f - this->title.getGlobalBounds().width / 2.f,
 		this->window->getSize().y / 6.f - this->title.getGlobalBounds().height / 2.f
 	);
+	std::cout << this->title.getPosition().x << " " << this->title.getPosition().y<<"\n";
 }
 
 void MainMenuState::initGui()
@@ -86,7 +88,7 @@ MainMenuState::MainMenuState(StateData* state_data)
 
 
 	this->background.setSize(sf::Vector2f(window->getSize()));
-	this->background.setFillColor(sf::Color(31, 34, 50, 255));
+	this->background.setTexture(&this->stateData->stateTextures["MAIN_MENU_BG"]);
 }
 
 MainMenuState::~MainMenuState()
