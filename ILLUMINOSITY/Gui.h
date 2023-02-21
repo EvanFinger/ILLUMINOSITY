@@ -40,7 +40,7 @@ namespace gui
 		Button(
 			bool toggleable,
 			float x, float y, float width, float height,
-			sf::Font* font, unsigned int fontSize, std::string text,
+			sf::Font* font, float fontSize, std::string text,
 			sf::Color text_idle_color, sf::Color text_hover_color, sf::Color text_active_color,
 			sf::Color idle_color, sf::Color hover_color, sf::Color active_color,
 			sf::Color outline_idle_color = sf::Color::Transparent, sf::Color outline_hover_color = sf::Color::Transparent, sf::Color outline_active_color = sf::Color::Transparent,
@@ -55,7 +55,7 @@ namespace gui
 
 		//Modifiers
 		void setText(const std::string text); \
-			void setSize(float width, float height, unsigned int font_Size);
+			void setSize(float width, float height, float font_Size);
 		void setSize(float width, float height);
 		void setPosition(float x, float y);
 

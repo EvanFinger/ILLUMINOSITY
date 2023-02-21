@@ -12,7 +12,7 @@ BUTTON CLASS (credit in .h)
 gui::Button::Button(
 	bool toggleable,
 	float x, float y, float width, float height,
-	sf::Font* font, unsigned int fontSize, std::string text,
+	sf::Font* font, float fontSize, std::string text,
 	sf::Color text_idle_color, sf::Color text_hover_color, sf::Color text_active_color,
 	sf::Color idle_color, sf::Color hover_color, sf::Color active_color,
 	sf::Color outline_idle_color, sf::Color outline_hover_color, sf::Color outline_active_color,
@@ -37,7 +37,7 @@ gui::Button::Button(
 	this->text.setFont(*this->font);
 	this->text.setString(text);
 	this->text.setFillColor(textIdleColor);
-	this->text.setCharacterSize(fontSize);
+	this->text.setCharacterSize(static_cast<unsigned>(fontSize));
 	this->text.setPosition(
 		this->shape.getPosition().x + (this->shape.getGlobalBounds().width / 2.f) - this->text.getGlobalBounds().width / 2.f,
 		this->shape.getPosition().y + (this->shape.getGlobalBounds().height / 2.f) - this->text.getGlobalBounds().height
@@ -102,11 +102,11 @@ void gui::Button::setPosition(float x, float y)
 	);
 }
 
-void gui::Button::setSize(float width, float height, unsigned int font_Size)
+void gui::Button::setSize(float width, float height, float font_Size)
 {
 	this->shape.setSize(sf::Vector2f(width, height));
 
-	this->text.setCharacterSize(font_Size);
+	this->text.setCharacterSize(static_cast<unsigned>(font_Size));
 }
 
 void gui::Button::setSize(float width, float height)
@@ -255,7 +255,7 @@ gui::DropdownList::DropdownList(float x, float y, float width, float height, sf:
 				sf::Color(255, 255, 255, 150), sf::Color(255, 255, 255, 255), sf::Color(20, 20, 20, 50),
 				sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 200), sf::Color(20, 20, 20, 200),
 				sf::Color(255, 255, 255, 0), sf::Color(255, 255, 255, 0), sf::Color(20, 20, 20, 0),
-				i
+				static_cast<unsigned short>(i)
 			)
 		);
 	}
@@ -373,8 +373,8 @@ gui::ArrowSelection::ArrowSelection(
 	this->activeItem.setCharacterSize(24);
 	this->activeItem.setString(this->list[default_index]);
 	this->activeItem.setPosition(
-		this->shape.getPosition().x + this->shape.getGlobalBounds().width * 0.5 - this->activeItem.getGlobalBounds().width * 0.5,
-		this->shape.getPosition().y + this->shape.getGlobalBounds().height * 0.5 - this->activeItem.getGlobalBounds().height
+		this->shape.getPosition().x + this->shape.getGlobalBounds().width * 0.5f - this->activeItem.getGlobalBounds().width * 0.5f,
+		this->shape.getPosition().y + this->shape.getGlobalBounds().height * 0.5f - this->activeItem.getGlobalBounds().height
 	);
 
 	this->indexRight = new gui::Button(
@@ -406,7 +406,7 @@ void gui::ArrowSelection::update(const sf::Vector2f& mousePos)
 		if (this->activeIndex > 0)
 			this->activeIndex -= 1;
 		else
-			this->activeIndex = this->list.size() - 1;
+			this->activeIndex = static_cast<unsigned short>(this->list.size() - 1);
 	}
 
 	this->indexRight->update(mousePos);
@@ -450,7 +450,7 @@ gui::ToggleSwitch::ToggleSwitch(float x, float y, float width, float height, sf:
 	this->switchOff.setSize(sf::Vector2f(width * 0.5f, height * 0.5f));
 	this->switchOff.setFillColor(this->switchLever);
 
-	this->switchOn.setPosition(x + width * 0.5, y);
+	this->switchOn.setPosition(x + width * 0.5f, y);
 	this->switchOn.setSize(sf::Vector2f(width * 0.5f, height * 0.5f));
 	this->switchOn.setFillColor(this->switchBackground);
 

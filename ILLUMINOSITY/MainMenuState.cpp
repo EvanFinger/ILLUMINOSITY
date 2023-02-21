@@ -35,7 +35,7 @@ void MainMenuState::initTextures()
 void MainMenuState::initTitle()
 {
 	this->title.setFont(this->font);
-	this->title.setCharacterSize(this->window->getSize().x / 20.f);
+	this->title.setCharacterSize(static_cast<unsigned>(this->window->getSize().x / 20.f));
 	this->title.setString("THE WATCHERS");
 
 	this->title.setPosition(
@@ -115,7 +115,7 @@ void MainMenuState::refresh()
 		);
 		iterator.second->setPosition(
 			this->window->getSize().x / 2.f - (this->window->getSize().x / 6.4f) / 2.f,
-			(this->title.getPosition().y + this->title.getGlobalBounds().height * 2.5f) + (this->window->getSize().y / 12.8f) * 1.25 * i
+			(this->title.getPosition().y + this->title.getGlobalBounds().height * 2.5f) + (this->window->getSize().y / 12.8f) * 1.25f * i
 		);
 		i++;
 	}

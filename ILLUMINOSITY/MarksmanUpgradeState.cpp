@@ -35,7 +35,7 @@ void MarksmanUpgradeState::initTextures()
 void MarksmanUpgradeState::initTitle()
 {
 	this->title.setFont(this->font);
-	this->title.setCharacterSize(this->window->getSize().x / 20.f);
+	this->title.setCharacterSize(static_cast<unsigned>(this->window->getSize().x / 20.f));
 	this->title.setString("The Way Of The Marksman");
 
 	this->title.setPosition(

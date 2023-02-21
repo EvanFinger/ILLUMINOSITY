@@ -42,7 +42,7 @@ void SettingsState::initTextures()
 void SettingsState::initTitle()
 {
 	this->title.setFont(this->font);
-	this->title.setCharacterSize(this->window->getSize().x / 20.f);
+	this->title.setCharacterSize(this->window->getSize().x / 20);
 	this->title.setString("SETTINGS");
 
 	this->title.setPosition(
@@ -90,14 +90,14 @@ void SettingsState::initGui(unsigned short default_index, bool fullscreen)
 	std::string list[] = { "123", "456", "789" };
 
 	this->arrowSelectors["RESOLUTION"] = new gui::ArrowSelection(
-		this->stateData->window->getSize().x / 6.4, this->stateData->window->getSize().y / 10.8, 250, 40,
+		this->stateData->window->getSize().x / 6.4f, this->stateData->window->getSize().y / 10.8f, 250, 40,
 		this->font, modes_str.data(), modes_str.size(), default_index
 	);
 
 	//FullScreen
 	this->toggleSwitches["FULLSCREEN"] = new gui::ToggleSwitch(
-		this->stateData->window->getSize().x / 4.8f, this->stateData->window->getSize().y / 4.5,
-		this->stateData->window->getSize().x / 12.8, this->stateData->window->getSize().y / 21.6,
+		this->stateData->window->getSize().x / 4.8f, this->stateData->window->getSize().y / 4.5f,
+		this->stateData->window->getSize().x / 12.8f, this->stateData->window->getSize().y / 21.6f,
 		sf::Color(20, 30, 60, 200), sf::Color(50, 60, 60, 200), sf::Color(255, 255, 255, 200),
 		fullscreen
 	);
@@ -110,7 +110,7 @@ void SettingsState::initText()
 {
 	this->optionsText.setFont(this->font);
 
-	this->optionsText.setPosition(sf::Vector2f(this->stateData->window->getSize().x / 19.2f, this->stateData->window->getSize().y / 10.8));
+	this->optionsText.setPosition(sf::Vector2f(this->stateData->window->getSize().x / 19.2f, this->stateData->window->getSize().y / 10.8f));
 
 	this->optionsText.setCharacterSize(30);
 	this->optionsText.setFillColor(sf::Color(255, 255, 255, 200));

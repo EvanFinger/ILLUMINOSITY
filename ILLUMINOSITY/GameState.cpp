@@ -24,8 +24,8 @@ void GameState::initView()
 {
 	this->view.setSize(
 		sf::Vector2f(
-			this->stateData->gfxSettings->resolution.width,
-			this->stateData->gfxSettings->resolution.height
+			static_cast<float>(this->stateData->gfxSettings->resolution.width),
+			static_cast<float>(this->stateData->gfxSettings->resolution.height)
 		)
 	);
 
@@ -91,7 +91,7 @@ void GameState::initHealthbar()
 
 void GameState::initTilemap()
 {
-	tilemap = new Tilemap(this->stateData->gridSize);
+	tilemap = new Tilemap(static_cast<unsigned>(this->stateData->gridSize));
 }
 
 void GameState::initPlayer()
@@ -192,7 +192,7 @@ void GameState::update(const float& dt)
 
 		this->player->update(dt);
 
-		this->tilemap->update(this->player);
+		this->tilemap->update(this->player, this->stateData);
 	}
 	else //paused
 	{
@@ -210,7 +210,10 @@ void GameState::render(sf::RenderTarget* target)
 	this->renderTexture.clear();
 
 	this->renderTexture.setView(this->view);
+
 	this->tilemap->render(this->renderTexture, this->player, this->stateData);
+
+
 	this->player->render(this->renderTexture);
 
 

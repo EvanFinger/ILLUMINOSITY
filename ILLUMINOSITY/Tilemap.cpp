@@ -3,11 +3,17 @@
 
 Tilemap::Tilemap(const unsigned gridSizeU)
 {
-	this->gridSizeF = gridSizeU;
-	this->gridSizeU = static_cast<unsigned>(this->gridSizeF);
-	this->mapSize.x = 1000;
-	this->mapSize.y = 1000;
+	this->gridSizeF = static_cast<float>(gridSizeU);
+	this->gridSizeU = gridSizeU;
+	this->mapSize.x = 50;
+	this->mapSize.y = 50;
 	this->layers = 1;
+
+	this->startX = 0;
+	this->startY = 0;
+	this->endX = 0;
+	this->endY = 0;
+	this->layer = 0;
 
 	if (!this->tileTexture.loadFromFile("Images/TileMap/tileset_tile_1.png"))
 		std::cout << "ERROR LOADING TILE TEXTURE";
@@ -45,7 +51,7 @@ const sf::Vector2u& Tilemap::getmapSize() const
 	return this->mapSize;
 }
 
-void Tilemap::update(Entity* entity)
+void Tilemap::update(Entity* entity, StateData* state_data)
 {
 	//WORLD BOUNDING
 	if (entity->getEntityPosition().x < 0.f)
@@ -70,29 +76,60 @@ void Tilemap::update(Entity* entity)
 	}
 
 	//TILES
-	this->startX = entity->getGridPosition(this->gridSizeU).x - 2;
-	this->endX = entity->getGridPosition(this->gridSizeU).x + 2;
-	this->startY = entity->getGridPosition(this->gridSizeU).y - 2;
-	this->endY = entity->getGridPosition(this->gridSizeU).y + 2;
-	
-	
+	int temp;
+	temp = entity->getGridPosition(this->gridSizeU).x - state_data->gfxSettings->resolution.width / this->gridSizeU / 2 - 1;
+	if (temp < 1) this->startX = 0;
+	else if (temp >= (short)this->mapSize.x) this->startX = this->mapSize.x;
+	else this->startX = temp;
 
-	for (size_t x = startX; x < endX; x++)
+	temp = entity->getGridPosition(this->gridSizeU).x + state_data->gfxSettings->resolution.width / this->gridSizeU / 2 + 3;
+	if (temp < 1) this->endX = 0;
+	else if (temp >= (short)this->mapSize.x) this->endX = this->mapSize.x;
+	else this->endX = temp;
+
+	temp = entity->getGridPosition(this->gridSizeU).y - state_data->gfxSettings->resolution.height / this->gridSizeU / 2 - 1;
+	if (temp < 1) this->startY = 0;
+	else if (temp >= (short)this->mapSize.y) this->startY = this->mapSize.y;
+	else this->startY = temp;
+
+	temp = entity->getGridPosition(this->gridSizeU).y + state_data->gfxSettings->resolution.height / this->gridSizeU / 2 + 3;
+	if (temp < 1) this->endY = 0;
+	else if (temp >= (short)this->mapSize.y) this->endY = this->mapSize.y;
+	else this->endY = temp;
+
+	/*for (size_t x = startX; x < endX; x++)
 	{
 		for (size_t y = startY; y < endY; y++)
 		{
 			
 		}
-	}
+	}*/
 }
 
-void Tilemap::render(sf::RenderTarget& target, Entity* entity, StateData* state_data)
+bool Tilemap::render(sf::RenderTarget& target, Entity* entity, StateData* state_data)
 {
-	this->startX = entity->getGridPosition(this->gridSizeU).x - state_data->gfxSettings->resolution.width / this->gridSizeU / 2 - 3;
-	this->endX = entity->getGridPosition(this->gridSizeU).x + state_data->gfxSettings->resolution.width / this->gridSizeU / 2 + 3;
-	this->startY = entity->getGridPosition(this->gridSizeU).y - state_data->gfxSettings->resolution.height / this->gridSizeU / 2 - 3;
-	this->endY = entity->getGridPosition(this->gridSizeU).y + state_data->gfxSettings->resolution.height / this->gridSizeU / 2 + 3;
+	int temp; bool edge = false;
+	temp = entity->getGridPosition(this->gridSizeU).x - state_data->gfxSettings->resolution.width / this->gridSizeU / 2 - 1;
+	if (temp < 1) { this->startX = 0; edge = true; }
+	else if (temp >= (short)this->mapSize.x) this->startX = this->mapSize.x;
+	else this->startX = temp;
 
+	temp = entity->getGridPosition(this->gridSizeU).x + state_data->gfxSettings->resolution.width / this->gridSizeU / 2 + 3;
+	if (temp < 1) this->endX = 0;
+	else if (temp >= (short)this->mapSize.x) this->endX = this->mapSize.x;
+	else this->endX = temp;
+
+	temp = entity->getGridPosition(this->gridSizeU).y - state_data->gfxSettings->resolution.height / this->gridSizeU / 2 - 1;
+	if (temp < 1) this->startY = 0;
+	else if (temp >= (short)this->mapSize.y) this->startY = this->mapSize.y;
+	else this->startY = temp;
+
+	temp = entity->getGridPosition(this->gridSizeU).y + state_data->gfxSettings->resolution.height / this->gridSizeU / 2 + 3;
+	if (temp < 1) this->endY = 0;
+	else if (temp >= (short)this->mapSize.y) this->endY = this->mapSize.y;
+	else this->endY = temp;
+
+	
 	for (size_t x = startX; x < endX; x++)
 	{
 		for (size_t y = startY; y < endY; y++)
@@ -103,6 +140,8 @@ void Tilemap::render(sf::RenderTarget& target, Entity* entity, StateData* state_
 			}
 		}
 	}
+
+	return edge;
 	/*for (auto& x : this->map)
 	{
 		for (auto& y : x)

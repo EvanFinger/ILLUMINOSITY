@@ -23,8 +23,8 @@ public:
 
 	const sf::Vector2u& getmapSize() const;
 
-	void update(Entity* entity);
-	void render(sf::RenderTarget& target, Entity* entity, StateData* state_data);
+	void update(Entity* entity, StateData* state_data);
+	bool render(sf::RenderTarget& target, Entity* entity, StateData* state_data);
 };
 
 #endif

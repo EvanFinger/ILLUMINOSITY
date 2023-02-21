@@ -35,7 +35,7 @@ void CharacterSelectState::initTextures()
 void CharacterSelectState::initTitle()
 {
 	this->title.setFont(this->font);
-	this->title.setCharacterSize(this->window->getSize().x / 20.f);
+	this->title.setCharacterSize(static_cast<unsigned>(this->window->getSize().x / 20.f));
 	this->title.setString("Choose Your Way");
 
 	this->title.setPosition(
@@ -62,7 +62,7 @@ void CharacterSelectState::initPlayerDescription()
 	this->playerSummary.setString("D");
 
 	this->playerSummary.setPosition(
-		this->window->getSize().x / 12.8,
+		this->window->getSize().x / 12.8f,
 		this->title.getGlobalBounds().height * 7.f
 	);
 }
@@ -71,9 +71,9 @@ void CharacterSelectState::initButtons()
 {
 	float start_button_width = this->window->getSize().x / 6.4f, start_button_height = this->window->getSize().y / 12.8f;
 
-	float character_button_pos_x = this->window->getSize().x / 12.8;
+	float character_button_pos_x = this->window->getSize().x / 12.8f;
 	float character_button_length = this->title.getGlobalBounds().width / 1.143f;
-	float character_button_height = this->window->getSize().y / 10.8;
+	float character_button_height = this->window->getSize().y / 10.8f;
 
 	this->buttons["UPGRADES_STATE_BUTTON"] = new gui::Button(0, character_button_pos_x + (character_button_length - start_button_width), this->window->getSize().y / 1.174f,
 		start_button_width, start_button_height,
