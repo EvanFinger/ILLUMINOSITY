@@ -5,8 +5,8 @@ Tilemap::Tilemap(const unsigned gridSizeU)
 {
 	this->gridSizeF = static_cast<float>(gridSizeU);
 	this->gridSizeU = gridSizeU;
-	this->mapSize.x = 50;
-	this->mapSize.y = 50;
+	this->mapSize.x = 10000;
+	this->mapSize.y = 10000;
 	this->layers = 1;
 
 	this->startX = 0;
